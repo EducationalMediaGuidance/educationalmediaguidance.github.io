@@ -494,7 +494,7 @@
   <p>الصوت الإعلامي لإدارة منتزه أول التعليمية — نوثّق الحدث بعدسة وقلم، وندرّب أقلام الغد على المسؤولية الإعلامية</p>
   <div class="hero-stats">
     <div class="stat"><div class="stat-num">٤٠+</div><div class="stat-label">مدرسة تابعة للإدارة</div></div>
-    <div class="stat"><div class="stat-num">١٥+</div><div class="stat-label">عضواً بالفريق الصحفي</div></div>
+    <div class="stat"><div class="stat-num">٥٠+</div><div class="stat-label">عضواً بالفريق الصحفي</div></div>
     <div class="stat"><div class="stat-num">١٢</div><div class="stat-label">قيادات وموجهين</div></div>
   </div>
 </section>
@@ -725,6 +725,15 @@
           <input type="text" id="regAddress" placeholder="مثال: شارع ... - منطقة المنتزه">
           <div class="reg-error" id="err-regAddress">من فضلك أدخل عنوان المدرسة</div>
         </div>
+        <div class="reg-field">
+          <label>المرحلة الدراسية *</label>
+          <div class="reg-gender">
+            <button type="button" class="reg-gender-btn" data-stage="ابتدائي">🎒 ابتدائي</button>
+            <button type="button" class="reg-gender-btn" data-stage="إعدادي">📘 إعدادي</button>
+            <button type="button" class="reg-gender-btn" data-stage="ثانوي">🎓 ثانوي</button>
+          </div>
+          <div class="reg-error" id="err-regStage">من فضلك اختر المرحلة الدراسية</div>
+        </div>
       </div>
 
       <!-- Step 3 -->
@@ -749,6 +758,7 @@
           <div class="reg-review-item"><span>النوع</span><span id="rvGender">—</span></div>
           <div class="reg-review-item"><span>المدرسة</span><span id="rvSchool">—</span></div>
           <div class="reg-review-item"><span>العنوان</span><span id="rvAddress">—</span></div>
+          <div class="reg-review-item"><span>المرحلة الدراسية</span><span id="rvStage">—</span></div>
           <div class="reg-review-item"><span>الهاتف</span><span id="rvPhone">—</span></div>
           <div class="reg-review-item"><span>الوصف</span><span id="rvDesc">—</span></div>
         </div>
@@ -956,7 +966,7 @@ document.querySelectorAll('.member-card').forEach(card => {
 
   let step = 1;
   const totalSteps = 4;
-  const data = { name: '', gender: '', school: '', address: '', phone: '', desc: '' };
+  const data = { name: '', gender: '', school: '', address: '', stage: '', phone: '', desc: '' };
 
   function showStep(n) {
     panels.forEach(p => p.classList.toggle('active', p.dataset.panel == n));
@@ -986,6 +996,7 @@ document.querySelectorAll('.member-card').forEach(card => {
       data.address = document.getElementById('regAddress').value.trim();
       if (!data.school) { showErr('regSchool'); ok = false; }
       if (!data.address) { showErr('regAddress'); ok = false; }
+      if (!data.stage) { showErr('regStage'); ok = false; }
     } else if (n === 3) {
       data.phone = document.getElementById('regPhone').value.trim();
       data.desc = document.getElementById('regDesc').value.trim();
@@ -999,15 +1010,23 @@ document.querySelectorAll('.member-card').forEach(card => {
     document.getElementById('rvGender').textContent = data.gender;
     document.getElementById('rvSchool').textContent = data.school;
     document.getElementById('rvAddress').textContent = data.address;
+    document.getElementById('rvStage').textContent = data.stage;
     document.getElementById('rvPhone').textContent = data.phone;
     document.getElementById('rvDesc').textContent = data.desc || '—';
   }
 
-  document.querySelectorAll('.reg-gender-btn').forEach(btn => {
+  document.querySelectorAll('.reg-gender-btn[data-gender]').forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('.reg-gender-btn').forEach(b => b.classList.remove('selected'));
+      document.querySelectorAll('.reg-gender-btn[data-gender]').forEach(b => b.classList.remove('selected'));
       btn.classList.add('selected');
       data.gender = btn.dataset.gender;
+    });
+  });
+  document.querySelectorAll('.reg-gender-btn[data-stage]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.reg-gender-btn[data-stage]').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      data.stage = btn.dataset.stage;
     });
   });
 
@@ -1044,21 +1063,23 @@ document.querySelectorAll('.member-card').forEach(card => {
     nextBtn.disabled = true;
     nextBtn.textContent = 'جاري الإرسال...';
     const text =
-      '📝 *طلب تسجيل جديد — الفريق الصحفي*\n\n' +
-      '👤 *الاسم:* ' + data.name + '\n' +
-      '⚧ *النوع:* ' + data.gender + '\n' +
-      '🏫 *المدرسة:* ' + data.school + '\n' +
-      '📍 *العنوان:* ' + data.address + '\n' +
-      '📱 *الهاتف:* ' + data.phone + '\n' +
-      '📄 *وصف:* ' + (data.desc || 'لا يوجد');
+      '📝 طلب تسجيل جديد — الفريق الصحفي\n\n' +
+      '👤 الاسم: ' + data.name + '\n' +
+      '⚧ النوع: ' + data.gender + '\n' +
+      '🏫 المدرسة: ' + data.school + '\n' +
+      '📍 العنوان: ' + data.address + '\n' +
+      '🏷️ المرحلة الدراسية: ' + data.stage + '\n' +
+      '📱 الهاتف: ' + data.phone + '\n' +
+      '📄 وصف: ' + (data.desc || 'لا يوجد');
 
     try {
       const res = await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ chat_id: TG_CHAT_ID, text: text, parse_mode: 'Markdown' })
+        body: JSON.stringify({ chat_id: TG_CHAT_ID, text: text })
       });
-      if (!res.ok) throw new Error('fail');
+      const result = await res.json();
+      if (!res.ok || !result.ok) throw new Error(result.description || 'fail');
       panels.forEach(p => p.classList.toggle('active', p.dataset.panel === 'success'));
       document.querySelector('.reg-steps').style.display = 'none';
       document.querySelector('.reg-step-label').style.display = 'none';
@@ -1067,7 +1088,7 @@ document.querySelectorAll('.member-card').forEach(card => {
     } catch (err) {
       nextBtn.disabled = false;
       nextBtn.textContent = 'إرسال البيانات';
-      alert('حدث خطأ أثناء الإرسال، برجاء المحاولة مرة أخرى.');
+      alert('حدث خطأ أثناء الإرسال: ' + err.message + '\nبرجاء المحاولة مرة أخرى.');
     }
   });
 })();
