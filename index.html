@@ -241,6 +241,89 @@
 
   .placeholder-card .member-title { opacity: .75; }
 
+  /* ── TEAM HEADER / REGISTER BUTTON ── */
+  .team-header-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-bottom: 16px; }
+  .register-btn {
+    display: flex; align-items: center; gap: 10px;
+    background: linear-gradient(135deg, var(--navy), var(--royal));
+    color: white; border: none; border-radius: 30px;
+    padding: 13px 26px; font-family: 'Cairo', sans-serif; font-weight: 700; font-size: .92rem;
+    cursor: pointer; box-shadow: 0 8px 24px rgba(26,61,99,.28);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .register-btn svg { width: 19px; height: 19px; }
+  .register-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(26,61,99,.4); }
+
+  /* ── REGISTRATION WIZARD ── */
+  .reg-overlay {
+    display: none; position: fixed; inset: 0; z-index: 1000;
+    background: rgba(10,25,49,.65); backdrop-filter: blur(6px);
+    align-items: center; justify-content: center; padding: 20px;
+  }
+  .reg-overlay.open { display: flex; }
+  .reg-box {
+    width: 100%; max-width: 520px; background: white; border-radius: 22px;
+    box-shadow: 0 30px 80px rgba(0,0,0,.35); overflow: hidden;
+    max-height: 92vh; display: flex; flex-direction: column;
+    animation: profileIn .3s ease;
+  }
+  .reg-head {
+    background: linear-gradient(135deg, var(--navy), var(--royal));
+    padding: 24px 28px 20px; position: relative;
+  }
+  .reg-head-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+  .reg-title { font-family: 'Cairo', sans-serif; color: white; font-weight: 700; font-size: 1.15rem; }
+  .reg-close { background: rgba(255,255,255,.14); border: none; color: white; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: background .2s; }
+  .reg-close:hover { background: rgba(255,255,255,.28); }
+  .reg-steps { display: flex; gap: 6px; }
+  .reg-step-bar { flex: 1; height: 5px; border-radius: 4px; background: rgba(255,255,255,.22); overflow: hidden; }
+  .reg-step-bar > span { display: block; height: 100%; width: 0%; background: var(--gold); transition: width .35s ease; }
+  .reg-step-bar.done > span, .reg-step-bar.active > span { width: 100%; }
+  .reg-step-label { color: rgba(255,255,255,.7); font-size: .74rem; margin-top: 10px; }
+  .reg-step-label b { color: var(--gold-l); }
+
+  .reg-body { padding: 30px 28px; overflow-y: auto; }
+  .reg-panel { display: none; flex-direction: column; gap: 18px; animation: fadeUp .35s ease; }
+  .reg-panel.active { display: flex; }
+  .reg-field label { display: block; font-size: .84rem; font-weight: 700; color: var(--navy); margin-bottom: 8px; font-family: 'Cairo', sans-serif; }
+  .reg-field input, .reg-field textarea {
+    width: 100%; border: 1.5px solid #dbe4ec; border-radius: 12px; padding: 12px 14px;
+    font-family: 'IBM Plex Sans Arabic', sans-serif; font-size: .92rem; color: var(--text);
+    outline: none; transition: border-color .2s, box-shadow .2s; background: var(--bg);
+  }
+  .reg-field input:focus, .reg-field textarea:focus { border-color: var(--royal); box-shadow: 0 0 0 3px rgba(74,127,167,.15); }
+  .reg-field textarea { resize: vertical; min-height: 80px; }
+  .reg-field small { display: block; margin-top: 6px; font-size: .72rem; color: var(--muted); }
+  .reg-gender { display: flex; gap: 12px; }
+  .reg-gender-btn {
+    flex: 1; padding: 14px; border-radius: 12px; border: 1.5px solid #dbe4ec; background: var(--bg);
+    cursor: pointer; text-align: center; font-family: 'Cairo', sans-serif; font-weight: 700; font-size: .9rem;
+    color: var(--muted); transition: all .2s; display:flex; align-items:center; justify-content:center; gap:8px;
+  }
+  .reg-gender-btn.selected { border-color: var(--royal); background: linear-gradient(135deg, var(--navy), var(--royal)); color: white; }
+
+  .reg-review-item { display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px dashed #e2e8ef; font-size: .88rem; }
+  .reg-review-item:last-child { border-bottom: none; }
+  .reg-review-item span:first-child { color: var(--muted); font-weight: 600; }
+  .reg-review-item span:last-child { color: var(--navy); font-weight: 700; text-align: left; }
+
+  .reg-foot { padding: 20px 28px 26px; display: flex; gap: 12px; border-top: 1px solid #eef2f6; }
+  .reg-btn { flex: 1; padding: 13px; border-radius: 12px; border: none; font-family: 'Cairo', sans-serif; font-weight: 700; font-size: .92rem; cursor: pointer; transition: all .2s; }
+  .reg-btn-back { background: var(--bg); color: var(--muted); border: 1.5px solid #dbe4ec; }
+  .reg-btn-back:hover { background: #eef2f6; }
+  .reg-btn-next { background: linear-gradient(135deg, var(--navy), var(--royal)); color: white; }
+  .reg-btn-next:hover { box-shadow: 0 8px 22px rgba(26,61,99,.35); }
+  .reg-btn-next:disabled { opacity: .5; cursor: not-allowed; box-shadow: none; }
+  .reg-btn[hidden] { display: none; }
+
+  .reg-success { text-align: center; padding: 20px 10px; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+  .reg-success-icon { width: 70px; height: 70px; border-radius: 50%; background: linear-gradient(135deg, var(--navy), var(--royal)); display: flex; align-items: center; justify-content: center; font-size: 2rem; color: var(--gold-l); }
+  .reg-success h3 { font-family: 'Cairo', sans-serif; color: var(--navy); font-size: 1.15rem; }
+  .reg-success p { color: var(--muted); font-size: .88rem; line-height: 1.8; }
+
+  .reg-error { color: #b3261e; font-size: .8rem; margin-top: -8px; display: none; }
+  .reg-error.show { display: block; }
+
   /* ── FULL-PAGE PROFILE ── */
   .profile-page {
     display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -528,8 +611,16 @@
 <!-- TEAM (PLACEHOLDER) -->
 <section id="team">
   <div class="container">
-    <p class="section-label reveal">👥 الفريق الصحفي</p>
-    <h2 class="section-title reveal">أعضاء الفريق</h2>
+    <div class="team-header-row reveal">
+      <div>
+        <p class="section-label">👥 الفريق الصحفي</p>
+        <h2 class="section-title">أعضاء الفريق</h2>
+      </div>
+      <button class="register-btn" id="openRegisterBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg>
+        سجل بياناتك
+      </button>
+    </div>
     <div class="section-line reveal"></div>
 
     <div class="grade-header reveal">
@@ -587,6 +678,99 @@
   </div>
 </div>
 
+<!-- REGISTRATION WIZARD -->
+<div class="reg-overlay" id="regOverlay">
+  <div class="reg-box">
+    <div class="reg-head">
+      <div class="reg-head-top">
+        <div class="reg-title">📝 سجل بياناتك بالفريق</div>
+        <button class="reg-close" id="regClose">✕</button>
+      </div>
+      <div class="reg-steps">
+        <div class="reg-step-bar" data-bar="1"><span></span></div>
+        <div class="reg-step-bar" data-bar="2"><span></span></div>
+        <div class="reg-step-bar" data-bar="3"><span></span></div>
+        <div class="reg-step-bar" data-bar="4"><span></span></div>
+      </div>
+      <div class="reg-step-label">الخطوة <b id="regStepNum">1</b> من 4</div>
+    </div>
+
+    <div class="reg-body">
+      <!-- Step 1 -->
+      <div class="reg-panel active" data-panel="1">
+        <div class="reg-field">
+          <label>الاسم ثلاثي *</label>
+          <input type="text" id="regName" placeholder="مثال: محمد أحمد علي">
+          <div class="reg-error" id="err-regName">من فضلك أدخل الاسم ثلاثياً</div>
+        </div>
+        <div class="reg-field">
+          <label>النوع *</label>
+          <div class="reg-gender">
+            <button type="button" class="reg-gender-btn" data-gender="ذكر">👨 ذكر</button>
+            <button type="button" class="reg-gender-btn" data-gender="أنثى">👩 أنثى</button>
+          </div>
+          <div class="reg-error" id="err-regGender">من فضلك اختر النوع</div>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="reg-panel" data-panel="2">
+        <div class="reg-field">
+          <label>اسم المدرسة *</label>
+          <input type="text" id="regSchool" placeholder="مثال: مدرسة جمال عبد الناصر الثانوية">
+          <div class="reg-error" id="err-regSchool">من فضلك أدخل اسم المدرسة</div>
+        </div>
+        <div class="reg-field">
+          <label>عنوان المدرسة *</label>
+          <input type="text" id="regAddress" placeholder="مثال: شارع ... - منطقة المنتزه">
+          <div class="reg-error" id="err-regAddress">من فضلك أدخل عنوان المدرسة</div>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="reg-panel" data-panel="3">
+        <div class="reg-field">
+          <label>رقم الهاتف *</label>
+          <input type="tel" id="regPhone" placeholder="01xxxxxxxxx">
+          <div class="reg-error" id="err-regPhone">من فضلك أدخل رقم هاتف صحيح</div>
+        </div>
+        <div class="reg-field">
+          <label>وصف (اختياري)</label>
+          <textarea id="regDesc" placeholder="أي معلومات إضافية تحب تضيفها..."></textarea>
+          <small>هذا الحقل غير إلزامي</small>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="reg-panel" data-panel="4">
+        <div class="reg-field">
+          <label style="margin-bottom:14px;">مراجعة البيانات قبل الإرسال</label>
+          <div class="reg-review-item"><span>الاسم</span><span id="rvName">—</span></div>
+          <div class="reg-review-item"><span>النوع</span><span id="rvGender">—</span></div>
+          <div class="reg-review-item"><span>المدرسة</span><span id="rvSchool">—</span></div>
+          <div class="reg-review-item"><span>العنوان</span><span id="rvAddress">—</span></div>
+          <div class="reg-review-item"><span>الهاتف</span><span id="rvPhone">—</span></div>
+          <div class="reg-review-item"><span>الوصف</span><span id="rvDesc">—</span></div>
+        </div>
+      </div>
+
+      <!-- Success -->
+      <div class="reg-panel" data-panel="success">
+        <div class="reg-success">
+          <div class="reg-success-icon">✓</div>
+          <h3>تم إرسال بياناتك بنجاح</h3>
+          <p>وصل طلبك بسرية إلى فريق التوجيه، وهيتم التواصل معاك قريباً.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="reg-foot">
+      <button class="reg-btn reg-btn-back" id="regBack">السابق</button>
+      <button class="reg-btn reg-btn-next" id="regNext">التالي</button>
+    </div>
+  </div>
+</div>
+
 <!-- TICKER -->
 <div class="ticker-bar" aria-hidden="true">
   <span class="ticker-inner">
@@ -624,7 +808,7 @@
   <div class="footer-bottom">
     توجيه الصحافة والإعلام التربوي — إدارة منتزه أول التعليمية &copy; 2026 م
     <div style="margin-top:8px;font-size:.76rem;color:rgba(255,255,255,.35);letter-spacing:.5px;">
-      تصميم وتطوير: <span>OPAIDA</span> — Creatix Studio
+      تصميم وتطوير: <a href="https://www.facebook.com/DeOPAIDA8" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:none;">OPAIDA</a> — Creatix Studio
     </div>
   </div>
 </footer>
@@ -753,6 +937,140 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeProfile
 document.querySelectorAll('.member-card').forEach(card => {
   card.addEventListener('click', () => openProfile(card.dataset.member));
 });
+
+/* ══════════════════════════════════════════
+   REGISTRATION WIZARD → TELEGRAM
+══════════════════════════════════════════ */
+(function () {
+  const TG_TOKEN = '8905309834:AAGmUJmuRcYgFZYz7WzZOGaMIpDg29jSGkg';
+  const TG_CHAT_ID = '7824899931';
+
+  const overlay = document.getElementById('regOverlay');
+  const openBtn = document.getElementById('openRegisterBtn');
+  const closeBtn = document.getElementById('regClose');
+  const nextBtn = document.getElementById('regNext');
+  const backBtn = document.getElementById('regBack');
+  const stepNumEl = document.getElementById('regStepNum');
+  const panels = document.querySelectorAll('.reg-panel[data-panel]');
+  const bars = document.querySelectorAll('.reg-step-bar');
+
+  let step = 1;
+  const totalSteps = 4;
+  const data = { name: '', gender: '', school: '', address: '', phone: '', desc: '' };
+
+  function showStep(n) {
+    panels.forEach(p => p.classList.toggle('active', p.dataset.panel == n));
+    bars.forEach(b => {
+      const i = +b.dataset.bar;
+      b.classList.toggle('done', i < n);
+      b.classList.toggle('active', i <= n);
+    });
+    stepNumEl.textContent = n;
+    backBtn.hidden = n === 1;
+    nextBtn.textContent = n === totalSteps ? 'إرسال البيانات' : 'التالي';
+    if (n === totalSteps) fillReview();
+  }
+
+  function clearErrors() { document.querySelectorAll('.reg-error').forEach(e => e.classList.remove('show')); }
+  function showErr(id) { const e = document.getElementById('err-' + id); if (e) e.classList.add('show'); }
+
+  function validateStep(n) {
+    clearErrors();
+    let ok = true;
+    if (n === 1) {
+      data.name = document.getElementById('regName').value.trim();
+      if (data.name.split(/\s+/).filter(Boolean).length < 3) { showErr('regName'); ok = false; }
+      if (!data.gender) { showErr('regGender'); ok = false; }
+    } else if (n === 2) {
+      data.school = document.getElementById('regSchool').value.trim();
+      data.address = document.getElementById('regAddress').value.trim();
+      if (!data.school) { showErr('regSchool'); ok = false; }
+      if (!data.address) { showErr('regAddress'); ok = false; }
+    } else if (n === 3) {
+      data.phone = document.getElementById('regPhone').value.trim();
+      data.desc = document.getElementById('regDesc').value.trim();
+      if (!/^01[0-9]{9}$/.test(data.phone)) { showErr('regPhone'); ok = false; }
+    }
+    return ok;
+  }
+
+  function fillReview() {
+    document.getElementById('rvName').textContent = data.name;
+    document.getElementById('rvGender').textContent = data.gender;
+    document.getElementById('rvSchool').textContent = data.school;
+    document.getElementById('rvAddress').textContent = data.address;
+    document.getElementById('rvPhone').textContent = data.phone;
+    document.getElementById('rvDesc').textContent = data.desc || '—';
+  }
+
+  document.querySelectorAll('.reg-gender-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.reg-gender-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      data.gender = btn.dataset.gender;
+    });
+  });
+
+  function resetWizard() {
+    step = 1;
+    document.getElementById('regName').value = '';
+    document.getElementById('regSchool').value = '';
+    document.getElementById('regAddress').value = '';
+    document.getElementById('regPhone').value = '';
+    document.getElementById('regDesc').value = '';
+    document.querySelectorAll('.reg-gender-btn').forEach(b => b.classList.remove('selected'));
+    Object.keys(data).forEach(k => data[k] = '');
+    clearErrors();
+    nextBtn.disabled = false;
+    nextBtn.textContent = 'التالي';
+    showStep(1);
+  }
+
+  openBtn.addEventListener('click', () => { resetWizard(); overlay.classList.add('open'); document.body.style.overflow = 'hidden'; });
+  function closeWizard() { overlay.classList.remove('open'); document.body.style.overflow = ''; }
+  closeBtn.addEventListener('click', closeWizard);
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeWizard(); });
+
+  backBtn.addEventListener('click', () => { if (step > 1) { step--; showStep(step); } });
+
+  nextBtn.addEventListener('click', async () => {
+    if (step < totalSteps) {
+      if (!validateStep(step)) return;
+      step++;
+      showStep(step);
+      return;
+    }
+    // Final submit
+    nextBtn.disabled = true;
+    nextBtn.textContent = 'جاري الإرسال...';
+    const text =
+      '📝 *طلب تسجيل جديد — الفريق الصحفي*\n\n' +
+      '👤 *الاسم:* ' + data.name + '\n' +
+      '⚧ *النوع:* ' + data.gender + '\n' +
+      '🏫 *المدرسة:* ' + data.school + '\n' +
+      '📍 *العنوان:* ' + data.address + '\n' +
+      '📱 *الهاتف:* ' + data.phone + '\n' +
+      '📄 *وصف:* ' + (data.desc || 'لا يوجد');
+
+    try {
+      const res = await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chat_id: TG_CHAT_ID, text: text, parse_mode: 'Markdown' })
+      });
+      if (!res.ok) throw new Error('fail');
+      panels.forEach(p => p.classList.toggle('active', p.dataset.panel === 'success'));
+      document.querySelector('.reg-steps').style.display = 'none';
+      document.querySelector('.reg-step-label').style.display = 'none';
+      document.querySelector('.reg-foot').style.display = 'none';
+      setTimeout(closeWizard, 3200);
+    } catch (err) {
+      nextBtn.disabled = false;
+      nextBtn.textContent = 'إرسال البيانات';
+      alert('حدث خطأ أثناء الإرسال، برجاء المحاولة مرة أخرى.');
+    }
+  });
+})();
 </script>
 </body>
 </html>
