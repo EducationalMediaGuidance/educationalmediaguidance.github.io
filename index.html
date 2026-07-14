@@ -238,6 +238,8 @@
   .av-guide  { background: linear-gradient(135deg, var(--royal), #6f9dbf) !important; }
   .av-family { background: linear-gradient(135deg, #6f9dbf, var(--sky)) !important; }
   .av-placeholder { background: linear-gradient(135deg, #8a9bab, #b9c8d6) !important; }
+  .av-photo { background: var(--navy) !important; padding: 0; }
+  .av-photo img { width: 100%; height: 100%; object-fit: cover; position: relative; z-index: 1; }
 
   .placeholder-card .member-title { opacity: .75; }
 
@@ -301,6 +303,27 @@
     color: var(--muted); transition: all .2s; display:flex; align-items:center; justify-content:center; gap:8px;
   }
   .reg-gender-btn.selected { border-color: var(--royal); background: linear-gradient(135deg, var(--navy), var(--royal)); color: white; }
+
+  .reg-dropzone {
+    position: relative; border: 2px dashed #c3d3e0; border-radius: 16px;
+    background: var(--bg); padding: 40px 20px; text-align: center;
+    cursor: pointer; transition: border-color .2s, background .2s;
+  }
+  .reg-dropzone:hover, .reg-dropzone.dragover { border-color: var(--royal); background: #eef4f9; }
+  .reg-dropzone-icon {
+    width: 56px; height: 56px; border-radius: 14px; margin: 0 auto 16px;
+    background: white; box-shadow: 0 4px 14px rgba(10,25,49,.08);
+    display: flex; align-items: center; justify-content: center; color: var(--royal);
+  }
+  .reg-dropzone-icon svg { width: 26px; height: 26px; }
+  .reg-dropzone-title { font-family: 'Cairo', sans-serif; font-weight: 700; color: var(--navy); font-size: .98rem; margin-bottom: 4px; }
+  .reg-dropzone-sub { font-size: .8rem; color: var(--muted); }
+  .reg-dropzone-preview { display: flex; align-items: center; gap: 16px; text-align: right; }
+  .reg-dropzone-preview img { width: 76px; height: 76px; border-radius: 14px; object-fit: cover; border: 1.5px solid #dbe4ec; flex-shrink: 0; }
+  .reg-dropzone-preview-info { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+  .reg-dropzone-preview-info span { font-size: .84rem; color: var(--navy); font-weight: 600; word-break: break-all; }
+  .reg-dropzone-remove { background: none; border: none; color: #b3261e; font-size: .78rem; font-weight: 700; cursor: pointer; padding: 0; }
+  .reg-dropzone-remove:hover { text-decoration: underline; }
 
   .reg-review-item { display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px dashed #e2e8ef; font-size: .88rem; }
   .reg-review-item:last-child { border-bottom: none; }
@@ -644,29 +667,13 @@
       <div class="grade-line"></div>
     </div>
     <div class="team-grid">
-      <div class="member-card reveal placeholder-card" data-member="ph1">
-        <div class="member-avatar av-placeholder"><div class="avatar-initials">؟</div><span class="member-role-badge">قريباً</span></div>
-        <div class="member-body"><div class="member-name">عضو الفريق</div><div class="member-title">سيتم الإعلان عن البيانات قريباً</div></div>
+      <div class="member-card reveal" data-member="yahya">
+        <div class="member-avatar av-guide"><div class="avatar-initials">ي.ح</div><span class="member-role-badge">تصوير ومونتاج</span></div>
+        <div class="member-body"><div class="member-name">يحيى أشرف حسين</div><div class="member-title">عضو فعال في التصوير والمونتاج بالفريق الصحفي</div></div>
       </div>
-      <div class="member-card reveal placeholder-card" data-member="ph2">
-        <div class="member-avatar av-placeholder"><div class="avatar-initials">؟</div><span class="member-role-badge">قريباً</span></div>
-        <div class="member-body"><div class="member-name">عضو الفريق</div><div class="member-title">سيتم الإعلان عن البيانات قريباً</div></div>
-      </div>
-      <div class="member-card reveal placeholder-card" data-member="ph3">
-        <div class="member-avatar av-placeholder"><div class="avatar-initials">؟</div><span class="member-role-badge">قريباً</span></div>
-        <div class="member-body"><div class="member-name">عضو الفريق</div><div class="member-title">سيتم الإعلان عن البيانات قريباً</div></div>
-      </div>
-      <div class="member-card reveal placeholder-card" data-member="ph4">
-        <div class="member-avatar av-placeholder"><div class="avatar-initials">؟</div><span class="member-role-badge">قريباً</span></div>
-        <div class="member-body"><div class="member-name">عضو الفريق</div><div class="member-title">سيتم الإعلان عن البيانات قريباً</div></div>
-      </div>
-      <div class="member-card reveal placeholder-card" data-member="ph5">
-        <div class="member-avatar av-placeholder"><div class="avatar-initials">؟</div><span class="member-role-badge">قريباً</span></div>
-        <div class="member-body"><div class="member-name">عضو الفريق</div><div class="member-title">سيتم الإعلان عن البيانات قريباً</div></div>
-      </div>
-      <div class="member-card reveal placeholder-card" data-member="ph6">
-        <div class="member-avatar av-placeholder"><div class="avatar-initials">؟</div><span class="member-role-badge">قريباً</span></div>
-        <div class="member-body"><div class="member-name">عضو الفريق</div><div class="member-title">سيتم الإعلان عن البيانات قريباً</div></div>
+      <div class="member-card reveal" data-member="saif">
+        <div class="member-avatar av-guide"><div class="avatar-initials">س.ح</div><span class="member-role-badge">تنظيم الفريق</span></div>
+        <div class="member-body"><div class="member-name">سيف محمد حسين</div><div class="member-title">عضو فعال في تقديم النشاطات والإشراف على تنظيم العمل الجماعي</div></div>
       </div>
     </div>
   </div>
@@ -719,8 +726,9 @@
         <div class="reg-step-bar" data-bar="2"><span></span></div>
         <div class="reg-step-bar" data-bar="3"><span></span></div>
         <div class="reg-step-bar" data-bar="4"><span></span></div>
+        <div class="reg-step-bar" data-bar="5"><span></span></div>
       </div>
-      <div class="reg-step-label">الخطوة <b id="regStepNum">1</b> من 4</div>
+      <div class="reg-step-label">الخطوة <b id="regStepNum">1</b> من 5</div>
     </div>
 
     <div class="reg-body">
@@ -764,8 +772,33 @@
         </div>
       </div>
 
-      <!-- Step 3 -->
+      <!-- Step 3: Photo upload -->
       <div class="reg-panel" data-panel="3">
+        <div class="reg-field">
+          <label>الصورة الشخصية * (بحد أقصى 5 ميجابايت)</label>
+          <div class="reg-dropzone" id="regDropzone">
+            <input type="file" id="regPhoto" accept="image/*" hidden>
+            <div class="reg-dropzone-content" id="regDropzoneContent">
+              <div class="reg-dropzone-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>
+              </div>
+              <div class="reg-dropzone-title">اسحب صورتك هنا</div>
+              <div class="reg-dropzone-sub">أو اضغط لتصفح الملفات</div>
+            </div>
+            <div class="reg-dropzone-preview" id="regPhotoPreview" style="display:none;">
+              <img id="regPhotoImg" alt="معاينة الصورة">
+              <div class="reg-dropzone-preview-info">
+                <span id="regPhotoName"></span>
+                <button type="button" class="reg-dropzone-remove" id="regPhotoRemove">إزالة الصورة ✕</button>
+              </div>
+            </div>
+          </div>
+          <div class="reg-error" id="err-regPhoto">من فضلك ارفع صورة شخصية بحجم لا يتجاوز 5 ميجابايت</div>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="reg-panel" data-panel="4">
         <div class="reg-field">
           <label>رقم الهاتف *</label>
           <input type="tel" id="regPhone" placeholder="01xxxxxxxxx">
@@ -778,8 +811,8 @@
         </div>
       </div>
 
-      <!-- Step 4 -->
-      <div class="reg-panel" data-panel="4">
+      <!-- Step 5 -->
+      <div class="reg-panel" data-panel="5">
         <div class="reg-field">
           <label style="margin-bottom:14px;">مراجعة البيانات قبل الإرسال</label>
           <div class="reg-review-item"><span>الاسم</span><span id="rvName">—</span></div>
@@ -787,6 +820,7 @@
           <div class="reg-review-item"><span>المدرسة</span><span id="rvSchool">—</span></div>
           <div class="reg-review-item"><span>العنوان</span><span id="rvAddress">—</span></div>
           <div class="reg-review-item"><span>المرحلة الدراسية</span><span id="rvStage">—</span></div>
+          <div class="reg-review-item"><span>الصورة</span><span id="rvPhoto">—</span></div>
           <div class="reg-review-item"><span>الهاتف</span><span id="rvPhone">—</span></div>
           <div class="reg-review-item"><span>الوصف</span><span id="rvDesc">—</span></div>
         </div>
@@ -846,7 +880,7 @@
   <div class="footer-bottom">
     توجيه الصحافة والإعلام التربوي — إدارة منتزه أول التعليمية &copy; 2026 م
     <div style="margin-top:8px;font-size:.76rem;color:rgba(255,255,255,.35);letter-spacing:.5px;">
-      تصميم وتطوير: <a href="https://www.facebook.com/DeOPAIDA8" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:none;">OPAIDA</a> — Creatix Studio
+      تصميم وتطوير: <a href="https://www.facebook.com/DeOPAIDA8" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:none;">OPAIDA MAZED</a>
     </div>
   </div>
 </footer>
@@ -946,12 +980,16 @@ const MEMBER_DATA = {
     role: "عضو أسرة التوجيه", grade: "أسرة التوجيه",
     bio: "تسهم ضمن أسرة توجيه الصحافة والإعلام في متابعة ودعم الأنشطة الصحفية بالمدارس التابعة للإدارة."
   },
-  ph1: { name: "عضو الفريق", initials: "؟", role: "سيتم الإعلان قريباً", grade: "الفريق الصحفي", bio: "سيتم إضافة بيانات هذا العضو قريباً." },
-  ph2: { name: "عضو الفريق", initials: "؟", role: "سيتم الإعلان قريباً", grade: "الفريق الصحفي", bio: "سيتم إضافة بيانات هذا العضو قريباً." },
-  ph3: { name: "عضو الفريق", initials: "؟", role: "سيتم الإعلان قريباً", grade: "الفريق الصحفي", bio: "سيتم إضافة بيانات هذا العضو قريباً." },
-  ph4: { name: "عضو الفريق", initials: "؟", role: "سيتم الإعلان قريباً", grade: "الفريق الصحفي", bio: "سيتم إضافة بيانات هذا العضو قريباً." },
-  ph5: { name: "عضو الفريق", initials: "؟", role: "سيتم الإعلان قريباً", grade: "الفريق الصحفي", bio: "سيتم إضافة بيانات هذا العضو قريباً." },
-  ph6: { name: "عضو الفريق", initials: "؟", role: "سيتم الإعلان قريباً", grade: "الفريق الصحفي", bio: "سيتم إضافة بيانات هذا العضو قريباً." }
+  yahya: {
+    name: "يحيى أشرف حسين", initials: "ي.ح", photo: "https://i.ibb.co/8L0DYQF6/IMG-20260522-WA0032.jpg",
+    role: "عضو فعال في التصوير والمونتاج", grade: "الفريق الصحفي",
+    bio: "عضو فعال في التصوير والمونتاج في الفريق الصحفي."
+  },
+  saif: {
+    name: "سيف محمد حسين", initials: "س.ح", photo: "https://i.ibb.co/VcqFqhKC/IMG-20260522-WA0040.jpg",
+    role: "عضو فعال في تنظيم العمل الجماعي", grade: "الفريق الصحفي",
+    bio: "عضو فعال في تقديم النشاطات الصحفية والإشراف على تنظيم العمل الجماعي بالفريق الصحفي."
+  }
 };
 
 function openProfile(key) {
@@ -963,7 +1001,16 @@ function openProfile(key) {
   document.getElementById('modalBioTop').textContent = d.bio;
   document.getElementById('modalRoleText').textContent = d.role;
   document.getElementById('modalGradeText').textContent = d.grade;
-  document.getElementById('modalPlaceholder').textContent = d.initials;
+  const placeholderEl = document.getElementById('modalPlaceholder');
+  if (d.photo) {
+    placeholderEl.textContent = '';
+    placeholderEl.style.backgroundImage = `url('${d.photo}')`;
+    placeholderEl.style.backgroundSize = 'cover';
+    placeholderEl.style.backgroundPosition = 'center';
+  } else {
+    placeholderEl.textContent = d.initials;
+    placeholderEl.style.backgroundImage = '';
+  }
   document.getElementById('profileModal').classList.add('open');
   document.body.style.overflow = 'hidden';
   document.getElementById('profileModal').scrollTop = 0;
@@ -1000,8 +1047,52 @@ document.querySelectorAll('.member-card').forEach(card => {
   const bars = document.querySelectorAll('.reg-step-bar');
 
   let step = 1;
-  const totalSteps = 4;
+  let photoFile = null;
+  const MAX_PHOTO_BYTES = 5 * 1024 * 1024;
+  const totalSteps = 5;
   const data = { name: '', gender: '', school: '', address: '', stage: '', phone: '', desc: '' };
+
+  const dropzone = document.getElementById('regDropzone');
+  const dropzoneContent = document.getElementById('regDropzoneContent');
+  const photoInput = document.getElementById('regPhoto');
+  const photoPreview = document.getElementById('regPhotoPreview');
+  const photoImg = document.getElementById('regPhotoImg');
+  const photoName = document.getElementById('regPhotoName');
+  const photoRemoveBtn = document.getElementById('regPhotoRemove');
+
+  function setPhotoFile(f) {
+    document.getElementById('err-regPhoto').classList.remove('show');
+    if (!f) return;
+    if (!f.type.startsWith('image/')) { showErr('regPhoto'); return; }
+    if (f.size > MAX_PHOTO_BYTES) { showErr('regPhoto'); return; }
+    photoFile = f;
+    photoImg.src = URL.createObjectURL(f);
+    photoName.textContent = f.name + ' (' + (f.size / 1024 / 1024).toFixed(1) + ' ميجا)';
+    dropzoneContent.style.display = 'none';
+    photoPreview.style.display = 'flex';
+  }
+
+  function clearPhotoFile() {
+    photoFile = null;
+    photoInput.value = '';
+    dropzoneContent.style.display = '';
+    photoPreview.style.display = 'none';
+  }
+
+  dropzone.addEventListener('click', e => { if (e.target !== photoRemoveBtn) photoInput.click(); });
+  photoInput.addEventListener('change', () => setPhotoFile(photoInput.files[0]));
+  photoRemoveBtn.addEventListener('click', e => { e.stopPropagation(); clearPhotoFile(); });
+
+  ['dragenter', 'dragover'].forEach(evt => {
+    dropzone.addEventListener(evt, e => { e.preventDefault(); e.stopPropagation(); dropzone.classList.add('dragover'); });
+  });
+  ['dragleave', 'drop'].forEach(evt => {
+    dropzone.addEventListener(evt, e => { e.preventDefault(); e.stopPropagation(); dropzone.classList.remove('dragover'); });
+  });
+  dropzone.addEventListener('drop', e => {
+    const f = e.dataTransfer.files && e.dataTransfer.files[0];
+    if (f) setPhotoFile(f);
+  });
 
   function showStep(n) {
     panels.forEach(p => p.classList.toggle('active', p.dataset.panel == n));
@@ -1033,6 +1124,8 @@ document.querySelectorAll('.member-card').forEach(card => {
       if (!data.address) { showErr('regAddress'); ok = false; }
       if (!data.stage) { showErr('regStage'); ok = false; }
     } else if (n === 3) {
+      if (!photoFile) { showErr('regPhoto'); ok = false; }
+    } else if (n === 4) {
       data.phone = document.getElementById('regPhone').value.trim();
       data.desc = document.getElementById('regDesc').value.trim();
       if (!/^01[0-9]{9}$/.test(data.phone)) { showErr('regPhone'); ok = false; }
@@ -1048,6 +1141,7 @@ document.querySelectorAll('.member-card').forEach(card => {
     document.getElementById('rvStage').textContent = data.stage;
     document.getElementById('rvPhone').textContent = data.phone;
     document.getElementById('rvDesc').textContent = data.desc || '—';
+    document.getElementById('rvPhoto').textContent = photoFile ? '✅ ' + photoFile.name : '—';
   }
 
   document.querySelectorAll('.reg-gender-btn[data-gender]').forEach(btn => {
@@ -1067,11 +1161,15 @@ document.querySelectorAll('.member-card').forEach(card => {
 
   function resetWizard() {
     step = 1;
+    document.querySelector('.reg-steps').style.display = '';
+    document.querySelector('.reg-step-label').style.display = '';
+    document.querySelector('.reg-foot').style.display = '';
     document.getElementById('regName').value = '';
     document.getElementById('regSchool').value = '';
     document.getElementById('regAddress').value = '';
     document.getElementById('regPhone').value = '';
     document.getElementById('regDesc').value = '';
+    clearPhotoFile();
     document.querySelectorAll('.reg-gender-btn').forEach(b => b.classList.remove('selected'));
     Object.keys(data).forEach(k => data[k] = '');
     clearErrors();
@@ -1108,10 +1206,13 @@ document.querySelectorAll('.member-card').forEach(card => {
       '📄 وصف: ' + (data.desc || 'لا يوجد');
 
     try {
-      const res = await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
+      const fd = new FormData();
+      fd.append('chat_id', TG_CHAT_ID);
+      fd.append('caption', text);
+      fd.append('photo', photoFile, photoFile.name);
+      const res = await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendPhoto`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ chat_id: TG_CHAT_ID, text: text })
+        body: fd
       });
       const result = await res.json();
       if (!res.ok || !result.ok) throw new Error(result.description || 'fail');
